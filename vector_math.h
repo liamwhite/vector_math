@@ -37,7 +37,7 @@ static void skew_x(float *restrict dest, float a);
 static void skew_y(float *restrict dest, float a);
 
 // Construct an affine matrix representing the dot product of m1 and m2.
-// m1 and m2 may alias.
+// dest and m1 may alias.
 static void combine(float *dest, float *m1, float *restrict m2);
 
 // Construct an affine matrix representing a rotation by a degrees around a
