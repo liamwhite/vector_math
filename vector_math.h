@@ -17,6 +17,9 @@ static void ellipse_b3(float2 *restrict dest, float2 center, float2 radius, floa
 // Return the point and normal on the cubic bezier at time t. 
 static float4 decasteljau_b3(float2 c0, float2 c1, float2 c2, float2 c3, float t);
 
+// Return whether a cubic bezier is has no length (boolean).
+static int degentest(float2 c0, float2 c1, float2 c2, float2 c3);
+
 // Construct an affine matrix with values a,b,c,d,e,f,0,0,1.
 static void matrix(float *restrict dest, float a, float b, float c, float d, float e, float f);
 
@@ -53,15 +56,16 @@ static void subdiv_b3(float2 *restrict dest, float2 c0, float2 c1, float2 c2, fl
 // Construct two cubic beziers by splitting the bezier in c{0,3} at time 0.5. 
 static void subdiv_half_b3(float2 *restrict dest, float2 c0, float2 c1, float2 c2, float2 c3);
 
-// Return whether this cubic bezier is almost linear.
+// Return whether this cubic bezier is not almost linear (boolean).
 static int subdivtest(float2 c0, float2 c1, float2 c2, float2 c3);
 
-// Return the dot product of m and pt
+// Return the dot product of m and pt.
 static float2 transform_point(float *restrict m, float2 pt);
 
 #include "bbox_b3.h"
 #include "circle_b3.h"
 #include "decasteljau_b3.h"
+#include "degentest.h"
 #include "matrix.h"
 #include "offset.h"
 #include "subdiv_b3.h"
